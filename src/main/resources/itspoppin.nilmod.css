@@ -1,0 +1,14 @@
+/*noinspection ALL*/
+@nilmod {
+	name: "It's Poppin'!";
+	description: "A popcorn mod for NilLoader.";
+	authors: "LemmaEOF";
+	version: "${version}";
+}
+/*noinspection ALL*/
+entrypoints {
+	premain: "gay.lemmaeof.itspoppin.ItsPoppin";
+	hijack: "gay.lemmaeof.itspoppin.ItsPoppin";
+	blocks: "gay.lemmaeof.itspoppin.init.PoppinBlocks";
+	items: "gay.lemmaeof.itspoppin.init.PoppinItems";
+}
