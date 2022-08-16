@@ -2,5 +2,9 @@
   "popcorn_pop": {
     "sounds": ["itspoppin:popcorn_pop"],
     "subtitle": "subtitles.itspoppin.popcorn_pop"
+  },
+  "popsplosion": {
+    "sounds": ["itspoppin:popsplosion"],
+    "subtitle": "subtitles.itspoppin.popsplosion"
   }
 }

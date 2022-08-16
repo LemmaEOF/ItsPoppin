@@ -41,10 +41,10 @@ public class CornCobItem extends Item implements SpecialItemEntity {
 				boolean popNew = gauss < goal;
 				if (popNew && kernelsPopped < 64) {
 					ItemEntity kernel = new ItemEntity(entity.world, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(PoppinItems.POPCORN_KERNEL));
-					kernel.setVelocity((rand.nextFloat() * 0.25) - 0.125, rand.nextFloat() * 0.5 + 0.1, (rand.nextFloat() * 0.25) - 0.125);
+					kernel.setVelocity((rand.nextFloat() * 0.1) - 0.05, rand.nextFloat() * 0.5 + 0.1, (rand.nextFloat() * 0.1) - 0.05);
 					entity.world.spawnEntity(kernel);
-					((ServerWorld) kernel.world).spawnParticles(ParticleTypes.CLOUD, kernel.getX(), kernel.getY(), kernel.getZ(), 10, (rand.nextFloat() * 0.25) - 0.125, rand.nextFloat() * 0.5 + 0.1, (rand.nextFloat() * 0.25) - 0.125, 0.5);
-					kernel.world.playSound(null, kernel.getX(), kernel.getY(), kernel.getZ(), PoppinSounds.POPCORN_POP, SoundCategory.BLOCKS, 1f, 1f);
+					((ServerWorld) kernel.world).spawnParticles(ParticleTypes.CLOUD, kernel.getX(), kernel.getY(), kernel.getZ(), 10, (rand.nextFloat() * 0.1) - 0.05, rand.nextFloat() * 0.25 + 0.1, (rand.nextFloat() * 0.1) - 0.05, 0.1);
+					kernel.world.playSound(null, kernel.getX(), kernel.getY(), kernel.getZ(), PoppinSounds.POPCORN_POP, SoundCategory.BLOCKS, 1f, (rand.nextFloat() - rand.nextFloat()) * 0.1F + 1.0F);
 					stackData.putInt("KernelsPopped", kernelsPopped + 1);
 				}
 			}

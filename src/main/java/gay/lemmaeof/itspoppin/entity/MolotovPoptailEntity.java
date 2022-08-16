@@ -75,7 +75,7 @@ public class MolotovPoptailEntity extends ThrownItemEntity {
 
 	private void createPopsplosion() {
 		RandomGenerator rand = this.world.getRandom();
-		world.playSound(null, this.getX(), this.getY(), this.getZ(), PoppinSounds.POPCORN_POP, SoundCategory.BLOCKS, 1.5F, 1.0F);
+		world.playSound(null, this.getX(), this.getY(), this.getZ(), PoppinSounds.POPSPLOSION, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		((ServerWorld) this.world).spawnParticles(ParticleTypes.CLOUD, this.getX(), this.getY(), this.getZ(), 20, (rand.nextFloat() * 0.25) - 0.125, rand.nextFloat() * 0.5 + 0.1, (rand.nextFloat() * 0.25) - 0.125, 0.5);
 		ItemStack item = this.getItem();
 		if (!item.getOrCreateNbt().getBoolean("NoPops")) {

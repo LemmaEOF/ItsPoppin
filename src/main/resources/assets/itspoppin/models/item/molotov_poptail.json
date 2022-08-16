@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "itspoppin:item/molotov_poptail"
+    "layer0": "itspoppin:item/molotov_poptail",
+    "particle": "itspoppin:item/molotov_poptail"
   }
 }
