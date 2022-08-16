@@ -1,9 +1,9 @@
 package gay.lemmaeof.itspoppin.item;
 
-import gay.lemmaeof.aleph.Aleph;
 import gay.lemmaeof.itspoppin.hooks.SpecialItemEntity;
 import gay.lemmaeof.itspoppin.init.PoppinBlocks;
 import gay.lemmaeof.itspoppin.init.PoppinItems;
+import gay.lemmaeof.itspoppin.init.PoppinSounds;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.ItemEntity;
@@ -11,6 +11,8 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.MathHelper;
@@ -41,13 +43,14 @@ public class CornCobItem extends Item implements SpecialItemEntity {
 					ItemEntity kernel = new ItemEntity(entity.world, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(PoppinItems.POPCORN_KERNEL));
 					kernel.setVelocity((rand.nextFloat() * 0.25) - 0.125, rand.nextFloat() * 0.5 + 0.1, (rand.nextFloat() * 0.25) - 0.125);
 					entity.world.spawnEntity(kernel);
-					kernel.world.playSound(kernel.getX(), kernel.getY(), kernel.getZ(), SoundEvents.ENTITY_CHICKEN_EGG, SoundCategory.BLOCKS, 1f, 1f, true);
+					((ServerWorld) kernel.world).spawnParticles(ParticleTypes.CLOUD, kernel.getX(), kernel.getY(), kernel.getZ(), 10, (rand.nextFloat() * 0.25) - 0.125, rand.nextFloat() * 0.5 + 0.1, (rand.nextFloat() * 0.25) - 0.125, 0.5);
+					kernel.world.playSound(null, kernel.getX(), kernel.getY(), kernel.getZ(), PoppinSounds.POPCORN_POP, SoundCategory.BLOCKS, 1f, 1f);
 					stackData.putInt("KernelsPopped", kernelsPopped + 1);
 				}
 			}
 			if (heat < 700) entityData.putInt("Heat", heat + 1);
 			if (kernelsPopped >= 64) {
-				entity.world.playSound(entity.getX(), entity.getY(), entity.getZ(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1f, 1f, true);
+				entity.world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1f, 1f);
 				entity.discard();
 			}
 		} else {
@@ -68,8 +71,7 @@ public class CornCobItem extends Item implements SpecialItemEntity {
 
 	@Override
 	public int getItemBarColor(ItemStack stack) {
-		//TODO: figure out
-		return super.getItemBarColor(stack);
+		return 0xFFF587;
 	}
 
 	@Override

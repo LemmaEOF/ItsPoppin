@@ -2,12 +2,13 @@ package gay.lemmaeof.itspoppin;
 
 import gay.lemmaeof.itspoppin.transformer.ItemEntityTransformer;
 import gay.lemmaeof.itspoppin.transformer.ItemRendererTransformer;
+import gay.lemmaeof.itspoppin.transformer.StructureProcessorListsTransformer;
 import nilloader.NilLoader;
-import nilloader.api.ClassTransformer;
 import nilloader.api.ModRemapper;
 import nilloader.api.NilLogger;
 
 public class ItsPoppin implements Runnable {
+	public static final String MODID = "itspoppin";
 
 	public static final NilLogger log = NilLogger.get("It's Poppin'");
 	
@@ -21,8 +22,12 @@ public class ItsPoppin implements Runnable {
 			//TODO: possible Forge special support?
 		}
 
+		//hook in ticking and pickup for corn cobs
 		NilLoader.registerTransformer(new ItemEntityTransformer());
+		//hook in popcorn numbers being 4x
 		NilLoader.registerTransformer(new ItemRendererTransformer());
+		//hook in corn in savanna villages
+		NilLoader.registerTransformer(new StructureProcessorListsTransformer());
 	}
 
 	private boolean tryRemap(String smokeTest, String target) {

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "itspoppin:corn"
+    }
+  ],
+  "result": {
+    "item": "itspoppin:corn_kernel",
+    "count": 4
+  }
+}

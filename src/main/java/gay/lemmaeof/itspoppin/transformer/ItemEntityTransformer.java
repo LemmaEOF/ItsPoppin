@@ -39,7 +39,7 @@ public class ItemEntityTransformer extends MiniTransformer {
 
 	public static class Hooks {
 		public static void tickIfAble(ItemEntity entity) {
-			if (entity.getStack().getItem() instanceof SpecialItemEntity item) {
+			if (entity.getStack().getItem() instanceof SpecialItemEntity item && !entity.world.isClient) {
 				item.tick(entity);
 			}
 		}
