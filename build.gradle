@@ -1,86 +1,84 @@
 plugins {
-	id 'com.unascribed.nilgradle' version '1.4.0'
+	id 'maven-publish'
+	id 'org.quiltmc.loom' version '0.12.+'
 }
 
-// You can change this to be higher if you like. NilLoader itself is compiled
-// for Java 8 for compatibility with older versions.
-sourceCompatibility = 17
-targetCompatibility = 17
-
-group = 'gay.lemmaeof'
-archivesBaseName = 'ItsPoppin'
-version = '1.0'
+archivesBaseName = project.archives_base_name
+version = "${project.version}+${project.minecraft_version}"
+group = project.maven_group
 
 repositories {
-	mavenCentral()
+	maven { url "https://maven.terraformersmc.com" }
 	maven {
-		// NilLoader and NilGradle are published here
 		url 'https://repo.sleeping.town'
 		content {
 			includeGroup 'com.unascribed'
-			includeGroup 'gay.lemmaeof'
 		}
 	}
-	maven {
-		// If you wish to use Yarn or Intermediary
-		url 'https://maven.fabricmc.net'
-		content {
-			includeGroup 'net.fabricmc'
-		}
-	}
-	maven {
-		url 'https://maven.quiltmc.org/repository/release'
-		content {
-			includeGroup 'org.quiltmc'
-		}
-	}
-	maven {
-		// If you wish to use mcp_config or compile against Minecraft Forge
-		url 'https://maven.minecraftforge.net'
-		content {
-			includeGroup 'net.minecraftforge'
-			includeGroup 'de.oceanlabs.mcp'
-		}
-	}
-	maven {
-		url 'https://libraries.minecraft.net'
-		content {
-			includeGroup 'com.mojang'
-		}
-	}
-	maven {
-		url 'https://maven.terraformersmc.com/'
-		content {
-			includeGroup 'dev.emi'
-		}
-	}
-}
-
-nil {
-	id "itspoppin"
-	// Set this to false for a smaller JAR that can't be run as a standalone Java agent
-	standalone false
+	maven { url "https://jitpack.io" }
 }
 
 dependencies {
-	loader 'com.unascribed:nilloader:1.2.2'
+	minecraft "com.mojang:minecraft:${minecraft_version}"
+	mappings(loom.layered {
+		addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:${minecraft_version}+build.${quilt_mappings_version}:v2"))
+	})
+	modImplementation "org.quiltmc:quilt-loader:${project.quilt_loader_version}"
 
-	game nil.minecraft('1.19.2', 'client')
-
-	implementation 'com.mojang:datafixerupper:4.1.27'
-	implementation 'com.mojang:brigadier:1.0.18'
-
-	implementation 'gay.lemmaeof:aleph:1.4.3+1.19.2'
-
-//	modVia 'dev.emi:emi:0.3.3+1.19' //TODO: doesn't work with hashed or idea, oh well
+	modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${quilted_fabric_api_version}-${minecraft_version}"
+	modImplementation "dev.emi:emi:${project.emi_version}"
+	modImplementation include("com.unascribed:lib39-core:${project.lib39_version}")
+	implementation include("com.github.LlamaLad7:MixinExtras:0.0.12")
+	annotationProcessor("com.github.LlamaLad7:MixinExtras:0.0.12")
 }
 
-mappings {
-	via 'org.quiltmc:hashed:1.19.2'
+processResources {
+	inputs.property "version", version
 
-	work 'org.quiltmc:quilt-mappings:1.19.2+build.3:v2'
+	filesMatching('quilt.mod.json') {
+		expand "version": version
+	}
+}
 
-	target 'net.fabricmc:intermediary:1.19.2:v2'
-	target nil.forgeFrankenmapping(nil.mojmap('1.19.2', 'client'), 'de.oceanlabs.mcp:mcp_config:1.19.2')
-	target nil.mojmap('1.19.2', 'client')
+tasks.withType(JavaCompile).configureEach {
+	it.options.encoding = "UTF-8"
+	it.options.release = 17
+}
+
+java {
+	// Still required by IDEs such as Eclipse and Visual Studio Code
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
+
+	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task if it is present.
+	// If you remove this line, sources will not be generated.
+	withSourcesJar()
+
+	// If this mod is going to be a library, then it should also generate Javadocs in order to aid with developement.
+	// Uncomment this line to generate them.
+	// withJavadocJar()
+}
+
+// If you plan to use a different file for the license, don't forget to change the file name here!
+jar {
+	from("LICENSE") {
+		rename { "${it}_${archivesBaseName}" }
+	}
+}
+
+// Configure the maven publication
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
+
+	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+	repositories {
+		// Add repositories to publish to here.
+		// Notice: This block does NOT have the same function as the block in the top level.
+		// The repositories here will be used for publishing your artifact, not for
+		// retrieving dependencies.
+	}
 }

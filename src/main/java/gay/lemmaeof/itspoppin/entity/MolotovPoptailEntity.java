@@ -87,7 +87,7 @@ public class MolotovPoptailEntity extends ThrownItemEntity {
 		}
 		DamageSource source = new PoppedDamageSource(this, this.getOwner());
 		source.setProjectile().setFire().setExplosive();
-		Box box = this.entityBounds.expand(4);
+		Box box = this.getBoundingBox().expand(4);
 		for (Entity e : world.getOtherEntities(this, box, EntityPredicates.VALID_LIVING_ENTITY)) {
 			e.damage(source, 8);
 			if (!e.isFireImmune()) {

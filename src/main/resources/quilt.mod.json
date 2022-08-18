@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "quilt_loader": {
+    "group": "gay.lemmaeof",
+    "id": "itspoppin",
+    "version": "${version}",
+    "metadata": {
+      "name": "It's Poppin'!",
+      "description": "A silly popcorn mod.",
+      "contributors": {
+        "LemmaEOF": "Owner"
+      },
+      "contact": {
+        "issues": "https://github.com/LemmaEOF/ItsPoppin/issues",
+        "sources": "https://github.com/LemmaEOF/ItsPoppin"
+      },
+      "icon": "itspoppin.icon.png"
+    },
+    "intermediate_mappings": "net.fabricmc:intermediary",
+    "entrypoints": {
+      "init": "gay.lemmaeof.itspoppin.ItsPoppin",
+      "client_init": "gay.lemmaeof.itspoppin.ItsPoppinClient",
+      "pre_launch": "gay.lemmaeof.itspoppin.ItsPoppinPrelaunch"
+    },
+    "depends": [
+      {
+        "id": "lib39-core",
+        "version": "*"
+      }
+    ]
+  },
+  "mixin": "itspoppin.mixins.json"
+}

@@ -1,14 +1,17 @@
 package gay.lemmaeof.itspoppin.init;
 
+import gay.lemmaeof.itspoppin.ItsPoppin;
 import gay.lemmaeof.itspoppin.item.CornCobItem;
 import gay.lemmaeof.itspoppin.item.MolotovPoptailItem;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.util.registry.Registry;
 
-public class PoppinItems implements Runnable {
+public class PoppinItems {
 	public static final Item CORN = new CornCobItem(new Item.Settings().group(ItemGroup.FOOD).fireproof());
 	public static final Item CORN_KERNEL = new AliasedBlockItem(
 			PoppinBlocks.CORN,
@@ -21,8 +24,7 @@ public class PoppinItems implements Runnable {
 	);
 	public static final Item MOLOTOV_POPTAIL = new MolotovPoptailItem(new Item.Settings().group(ItemGroup.COMBAT));
 
-	@Override
-	public void run() {
-
+	public static void init() {
+		ItsPoppin.AUTOREG.autoRegister(Registry.ITEM, PoppinItems.class, Item.class);
 	}
 }

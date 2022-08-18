@@ -18,10 +18,10 @@ public class CornCropBlock extends CropBlock {
 		return PoppinItems.CORN_KERNEL;
 	}
 
-	@Override
-	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		if (this.getSeedsItem().asItem().isInGroup(group)) {
-			stacks.add(new ItemStack(this.getSeedsItem()));
-		}
-	}
+//	@Override
+//	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
+//		if (this.getSeedsItem().asItem().isInGroup(group)) {
+//			stacks.add(new ItemStack(this.getSeedsItem()));
+//		}
+//	}
 }

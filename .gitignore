@@ -6,3 +6,5 @@
 /.settings
 /.idea/
 .DS_Store
+run/
+out/

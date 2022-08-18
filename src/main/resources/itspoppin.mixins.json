@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "gay.lemmaeof.itspoppin.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "MixinItemEntity",
+    "MixinStructureProcessorLists",
+    "RuleStructureProcessorAccessor"
+  ],
+  "client": [
+    "MixinItemRenderer"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
