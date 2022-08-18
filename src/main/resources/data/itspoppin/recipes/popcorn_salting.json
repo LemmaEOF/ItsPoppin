@@ -1,0 +1,14 @@
+{
+  "type": "itspoppin:salting",
+  "ingredients": [
+    {
+      "item": "itspoppin:popcorn_bowl"
+    },
+    {
+      "item": "itspoppin:popcorn_salt"
+    }
+  ],
+  "result": {
+    "item": "itspoppin:popcorn_bowl"
+  }
+}

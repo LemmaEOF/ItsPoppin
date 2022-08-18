@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "itspoppin:item/popcorn_bowl",
+    "layer1": "itspoppin:item/popcorn_bowl_salt"
+  }
+}

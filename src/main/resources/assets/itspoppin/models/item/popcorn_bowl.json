@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "itspoppin:item/popcorn_bowl"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "itspoppin:salted": 1
+      },
+      "model": "itspoppin:item/salted_popcorn_bowl"
+    }
+  ]
+}

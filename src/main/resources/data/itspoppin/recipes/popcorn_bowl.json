@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "item": "itspoppin:popcorn_kernel"
+    },
+    {
+      "item": "itspoppin:popcorn_kernel"
+    },
+    {
+      "item": "itspoppin:popcorn_kernel"
+    },
+    {
+      "item": "itspoppin:popcorn_kernel"
+    },
+    {
+      "item": "itspoppin:popcorn_kernel"
+    },
+    {
+      "item": "itspoppin:popcorn_kernel"
+    },
+    {
+      "item": "itspoppin:popcorn_kernel"
+    },
+    {
+      "item": "itspoppin:popcorn_kernel"
+    }
+  ],
+  "result": {
+    "item": "itspoppin:popcorn_bowl"
+  }
+}

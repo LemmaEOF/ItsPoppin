@@ -16,6 +16,7 @@ repositories {
 		}
 	}
 	maven { url "https://jitpack.io" }
+	maven { url "https://mvn.devos.one/snapshots/" }
 }
 
 dependencies {
@@ -28,8 +29,12 @@ dependencies {
 	modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${quilted_fabric_api_version}-${minecraft_version}"
 	modImplementation "dev.emi:emi:${project.emi_version}"
 	modImplementation include("com.unascribed:lib39-core:${project.lib39_version}")
+	modImplementation(include("io.github.tropheusj:milk-lib:${project.milklib_version}")) {transitive = false}
+	modImplementation("io.github.tropheusj:dripstone-fluid-lib:${project.dripstone_version}") {transitive = false}
+
 	implementation include("com.github.LlamaLad7:MixinExtras:0.0.12")
 	annotationProcessor("com.github.LlamaLad7:MixinExtras:0.0.12")
+
 }
 
 processResources {

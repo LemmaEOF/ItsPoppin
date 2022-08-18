@@ -17,7 +17,7 @@ import net.minecraft.util.registry.Registry;
 public class PoppinBlocks {
 	public static final TagKey<Block> FIERY_BLOCKS = TagKey.of(Registry.BLOCK_KEY, new Identifier("itspoppin:is_fiery"));
 	public static final TagKey<Fluid> FIERY_FLUIDS =  TagKey.of(Registry.FLUID_KEY, new Identifier("itspoppin:is_fiery"));
-	//TODO: turn into a tag later, maybe? gonna have to restructure some stuff for that, maybe need Aleph additions
+	//TODO: turn into a tag later, maybe? gonna have to restructure some stuff for that since I'm practically doing (non-dangerous) reg-rep
 	public static final List<String> ADD_CORN_TO = List.of("zombie_savanna", "farm_savanna");
 
 	public static final Block CORN = new CornCropBlock(AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP));
