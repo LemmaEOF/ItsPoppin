@@ -1,5 +1,5 @@
 plugins {
-	id 'com.unascribed.nilgradle' version '1.3.5'
+	id 'com.unascribed.nilgradle' version '1.4.0'
 }
 
 // You can change this to be higher if you like. NilLoader itself is compiled
@@ -48,6 +48,12 @@ repositories {
 			includeGroup 'com.mojang'
 		}
 	}
+	maven {
+		url 'https://maven.terraformersmc.com/'
+		content {
+			includeGroup 'dev.emi'
+		}
+	}
 }
 
 nil {
@@ -65,6 +71,8 @@ dependencies {
 	implementation 'com.mojang:brigadier:1.0.18'
 
 	implementation 'gay.lemmaeof:aleph:1.4.3+1.19.2'
+
+//	modVia 'dev.emi:emi:0.3.3+1.19' //TODO: doesn't work with hashed or idea, oh well
 }
 
 mappings {
