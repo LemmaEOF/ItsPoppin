@@ -44,7 +44,7 @@ public class MolotovPoptailEntity extends ThrownItemEntity {
 
 	public void handleStatus(byte status) {
 		if (status == 3) {
-			ParticleEffect effect = new ItemStackParticleEffect(ParticleTypes.ITEM, this.getItem());
+			ParticleEffect effect = new ItemStackParticleEffect(ParticleTypes.ITEM, getStack());
 
 			for(int i = 0; i < 8; ++i) {
 				this.world.addParticle(effect, this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);

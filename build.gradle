@@ -17,6 +17,14 @@ repositories {
 	}
 	maven { url "https://jitpack.io" }
 	maven { url "https://mvn.devos.one/snapshots/" }
+
+	maven {
+		name "Modrinth"
+		url "https://api.modrinth.com/maven"
+		content {
+			includeGroup "maven.modrinth"
+		}
+	}
 }
 
 dependencies {
@@ -31,6 +39,11 @@ dependencies {
 	modImplementation include("com.unascribed:lib39-core:${project.lib39_version}")
 	modImplementation(include("io.github.tropheusj:milk-lib:${project.milklib_version}")) {transitive = false}
 	modImplementation("io.github.tropheusj:dripstone-fluid-lib:${project.dripstone_version}") {transitive = false}
+
+	modImplementation "maven.modrinth:kahur:${project.kahur_version}"
+	modLocalRuntime "com.unascribed:lib39-recoil:${project.lib39_version}"
+	modLocalRuntime "com.unascribed:lib39-ripple:${project.lib39_version}"
+	modLocalRuntime "com.unascribed:lib39-lockpick:${project.lib39_version}"
 
 	implementation include("com.github.LlamaLad7:MixinExtras:0.0.12")
 	annotationProcessor("com.github.LlamaLad7:MixinExtras:0.0.12")

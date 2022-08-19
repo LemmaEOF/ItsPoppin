@@ -28,7 +28,7 @@ public class PoppinItems {
 	public static final Item POPCORN_SALT = new PopcornSaltItem(new Item.Settings().group(ItemGroup.FOOD));
 	public static final Item POPCORN_BOWL = new PopcornBowlItem(new Item.Settings()
 			.group(ItemGroup.FOOD)
-			.maxCount(1)
+			.maxCount(16)
 			.food(
 					new FoodComponent.Builder().hunger(8).saturationModifier(0.8F).alwaysEdible().build()
 			)

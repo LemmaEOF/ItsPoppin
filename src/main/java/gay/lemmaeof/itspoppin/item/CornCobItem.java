@@ -26,11 +26,12 @@ public class CornCobItem extends Item implements SpecialItemEntity {
 	@Override
 	public void tick(ItemEntity entity) {
 		ItemStack stack = entity.getStack();
-		if (stack.getCount() > 1) return;
-		NbtCompound stackData = stack.getOrCreateSubNbt("ItsPoppinStackData");
-		NbtCompound entityData = stack.getOrCreateSubNbt("ItsPoppinEntityData");
 		BlockState blockState = entity.world.getBlockState(entity.getBlockPos());
 		FluidState fluidState = entity.world.getFluidState(entity.getBlockPos());
+		if (stack.getCount() > 1) return;
+		if (!stack.hasNbt() && !blockState.isIn(PoppinBlocks.FIERY_BLOCKS) && !fluidState.isIn(PoppinBlocks.FIERY_FLUIDS)) return;
+		NbtCompound stackData = stack.getOrCreateSubNbt("ItsPoppinStackData");
+		NbtCompound entityData = stack.getOrCreateSubNbt("ItsPoppinEntityData");
 		int heat = entityData.getInt("Heat");
 		if (blockState.isIn(PoppinBlocks.FIERY_BLOCKS) || fluidState.isIn(PoppinBlocks.FIERY_FLUIDS)) {
 			int kernelsPopped = stackData.getInt("KernelsPopped");
@@ -60,7 +61,7 @@ public class CornCobItem extends Item implements SpecialItemEntity {
 
 	@Override
 	public ItemStack getPickupStack(ItemStack stack) {
-		stack.removeSubNbt("ItsPoppinEntityData");
+		if (stack.hasNbt()) stack.removeSubNbt("ItsPoppinEntityData");
 		return stack;
 	}
 
@@ -76,6 +77,7 @@ public class CornCobItem extends Item implements SpecialItemEntity {
 
 	@Override
 	public boolean isItemBarVisible(ItemStack stack) {
+		if (!stack.hasNbt()) return false;
 		int kernels = stack.getOrCreateSubNbt("ItsPoppinStackData").getInt("KernelsPopped");
 		return kernels > 0 && kernels < 64;
 	}

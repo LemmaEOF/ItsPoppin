@@ -26,6 +26,10 @@
       {
         "id": "lib39-core",
         "version": "*"
+      },
+      {
+        "id": "milk",
+        "version": "*"
       }
     ]
   },
